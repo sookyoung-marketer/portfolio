@@ -85,32 +85,50 @@ img{max-width:100%;display:block}
 .gnb-cta:hover{background:#1d6de5;transform:translateY(-1px)}
 
 /* ───────────────────────────────────────────
-   DOT NAVIGATOR
+   FLOATING TOC NAVIGATOR
 ──────────────────────────────────────────── */
 #dot-nav{
-  position:fixed;right:28px;top:50%;transform:translateY(-50%);
+  position:fixed;right:32px;top:50%;transform:translateY(-50%);
   z-index:150;
-  display:flex;flex-direction:column;gap:10px;
+  display:flex;flex-direction:column;gap:2px;
   list-style:none;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--gray-200);
+  border-radius:12px;
+  padding:12px 8px;
+  box-shadow:0 4px 20px rgba(0,0,0,.07);
+  min-width:120px;
 }
 .dot-item{
-  width:7px;height:7px;
-  border-radius:50%;
-  background:var(--gray-300);
   cursor:pointer;
-  transition:all .3s;
+  transition:all .2s;
   position:relative;
+  border-radius:6px;
+  padding:5px 10px;
 }
-.dot-item.active{background:var(--blue);transform:scale(1.4)}
-.dot-item:hover::after{
-  content:attr(data-label);
-  position:absolute;right:16px;top:50%;transform:translateY(-50%);
-  font-size:11px;font-weight:600;color:var(--gray-700);
-  background:var(--white);
-  border:1px solid var(--gray-200);
-  padding:4px 10px;border-radius:6px;
+.dot-item a{
+  display:block;
+  font-size:12px;
+  font-weight:500;
+  color:var(--gray-400);
+  transition:all .2s;
   white-space:nowrap;
-  box-shadow:var(--shadow-sm);
+  letter-spacing:.01em;
+}
+.dot-item:hover a{color:var(--gray-700);}
+.dot-item:hover{background:var(--gray-100);}
+.dot-item.active a{
+  color:var(--blue);
+  font-weight:700;
+}
+.dot-item.active::before{
+  content:'';
+  position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:3px;height:16px;
+  background:var(--blue);
+  border-radius:0 2px 2px 0;
 }
 
 /* ───────────────────────────────────────────
@@ -175,6 +193,33 @@ img{max-width:100%;display:block}
 }
 .hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* SCROLL DOWN INDICATOR */
+.scroll-down{
+  position:absolute;
+  bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  cursor:pointer;
+  opacity:.6;
+  transition:opacity .2s;
+  animation:scrollFade 2.4s ease-in-out infinite;
+}
+.scroll-down:hover{opacity:1}
+.scroll-down-text{
+  font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gray-500);
+}
+.scroll-down-arrow{
+  width:18px;height:18px;
+  border-right:1.5px solid var(--gray-400);
+  border-bottom:1.5px solid var(--gray-400);
+  transform:rotate(45deg);
+  margin-top:-4px;
+}
+@keyframes scrollFade{
+  0%,100%{transform:translateX(-50%) translateY(0);opacity:.5}
+  50%{transform:translateX(-50%) translateY(5px);opacity:.9}
+}
 
 /* WHO AM I */
 .who-am-i{
@@ -954,12 +999,12 @@ footer{
 
 <!-- DOT NAV -->
 <ul id="dot-nav">
-  <li class="dot-item active" data-target="s-hero" data-label="Intro"></li>
-  <li class="dot-item" data-target="s-projects" data-label="Projects"></li>
-  <li class="dot-item" data-target="s-routine" data-label="Routine"></li>
-  <li class="dot-item" data-target="s-skills" data-label="Skills"></li>
-  <li class="dot-item" data-target="s-side" data-label="Side Projects"></li>
-  <li class="dot-item" data-target="s-contact" data-label="Contact"></li>
+  <li class="dot-item active" data-target="s-hero"><a onclick="smoothTo('s-hero')">Intro</a></li>
+  <li class="dot-item" data-target="s-projects"><a onclick="smoothTo('s-projects')">Projects</a></li>
+  <li class="dot-item" data-target="s-routine"><a onclick="smoothTo('s-routine')">Routine</a></li>
+  <li class="dot-item" data-target="s-skills"><a onclick="smoothTo('s-skills')">Skills</a></li>
+  <li class="dot-item" data-target="s-side"><a onclick="smoothTo('s-side')">Side</a></li>
+  <li class="dot-item" data-target="s-contact"><a onclick="smoothTo('s-contact')">Contact</a></li>
 </ul>
 
 <!-- ─── SECTION 1: HERO (WHO AM I만 - 뷰포트 100vh) ─── -->
@@ -983,9 +1028,11 @@ footer{
       </div>
     </div>
   </div>
+  <div class="scroll-down" onclick="smoothTo('s-projects')">
+    <span class="scroll-down-text">Scroll</span>
+    <div class="scroll-down-arrow"></div>
+  </div>
 </section>
-
-<!-- ─── ABOUT BLOCK ─── -->
 <section class="section" style="background:var(--white);padding-top:80px;padding-bottom:0">
   <div class="wrap">
     <div class="about-block rv">
