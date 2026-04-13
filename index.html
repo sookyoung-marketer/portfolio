@@ -978,6 +978,74 @@ footer{
   .drawer-content{padding:0 24px}
   .drawer-nav{padding:20px 24px}
   .drawer-hero{padding:24px}
+  .about-card{flex-direction:column}
+  .about-left{border-right:none;border-bottom:1px solid var(--gray-200);padding-bottom:24px;margin-bottom:0}
+  .about-right{width:100%}
+}
+
+@media(max-width:480px){
+  /* GNB */
+  #gnb{padding:0 16px;height:52px}
+  .gnb-cta{padding:7px 14px;font-size:12px}
+
+  /* 섹션 여백 */
+  .section{padding:80px 0}
+  .wrap{padding:0 16px}
+  .hero-wrap{padding:0 16px}
+
+  /* Hero */
+  #s-hero{padding-top:clamp(100px,16vh,160px)}
+  .hero-title{font-size:clamp(22px,6.5vw,32px);margin-bottom:16px}
+  .hero-sub{font-size:14px;line-height:1.75}
+  .who-label{margin-bottom:14px}
+
+  /* About 카드 */
+  .about-card{flex-direction:column}
+  .about-left{border-right:none;border-bottom:1px solid var(--gray-200);padding-bottom:20px}
+  .about-right{width:100%}
+  .about-row{grid-template-columns:76px 1fr}
+  .about-row-label{padding:12px 10px}
+  .about-row-content{padding:12px 14px}
+  .about-row-main{font-size:12px}
+  .about-row-sub{font-size:11px}
+
+  /* Work Process */
+  .wp-map{grid-template-columns:1fr}
+  .wp-step{border-right:none!important;border-bottom:1px solid var(--gray-200)}
+  .wp-step:last-child{border-bottom:none}
+
+  /* Key Results */
+  .impact-grid{grid-template-columns:1fr}
+  .impact-num{font-size:clamp(32px,8vw,44px)}
+
+  /* 프로젝트 카드 */
+  .card-grid-2,.card-grid-3{grid-template-columns:1fr}
+  .card-body{padding:18px 18px 20px}
+  .card-kpi-num{font-size:18px}
+
+  /* Skills */
+  .skills-grid{grid-template-columns:1fr}
+
+  /* Drawer */
+  .drawer{width:100vw;max-height:92vh;border-radius:20px 20px 0 0;top:auto;bottom:0;left:0;transform:translateY(100%) scale(1);transition:transform .35s cubic-bezier(.22,.61,.36,1),opacity .3s}
+  .drawer.open{transform:translateY(0) scale(1)}
+  .drawer-content{padding:0 18px}
+  .drawer-nav{padding:16px 18px}
+  .drawer-hero{height:180px;padding:20px 18px}
+  .drawer-title{font-size:20px}
+  .kpi-result-cards{grid-template-columns:1fr 1fr}
+  .prob-cards{grid-template-columns:1fr}
+
+  /* Contact 폼 */
+  .form-row{grid-template-columns:1fr}
+  .section-title{font-size:clamp(22px,5.5vw,32px)}
+
+  /* Footer */
+  footer{padding:24px 16px;flex-direction:column;gap:8px;text-align:center}
+
+  /* Side items */
+  .side-item{flex-direction:column;gap:16px;padding:20px}
+  .side-icon{width:44px;height:44px;font-size:20px}
 }
 </style>
 <script>
